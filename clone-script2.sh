@@ -19,7 +19,7 @@
 #===============================================================================
 
 usage() {
-    echo "Usage: $0 [-l <location-for-cloning>] [-f <file-with-repositories>]" 1>&2;
+    echo "Usage: $0 [-l <location-for-cloning>] [-f <file-with-repositories>] [-b <branch-name>]" 1>&2;
     exit 1;
 }
 
