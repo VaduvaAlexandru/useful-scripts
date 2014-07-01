@@ -47,15 +47,13 @@ shift $((OPTIND-1))
 if [ -z "${location}" ]; then
     location="/home/alex/workspace/alvd-linux/test"
 fi
-#echo ${location}
-#echo ${file[@]}
-#echo ${counter}
+repo="$(pwd)"
+cd ${location}
 for (( i=0; i<${counter}; i++ ))
 do
-    filename=$(pwd)/${file[${i}]}
-#    echo ${filename}
+    filename=${repo}/${file[${i}]}
     while read -r line
     do
-        git clone -b ${branch} ${line} ${location}
+        git clone -b ${branch} ${line}
     done < "${filename}"
 done
