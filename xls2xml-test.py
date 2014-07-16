@@ -2,7 +2,7 @@
 import sys
 import xlrd
 
-# Parse the command line arguments
+# Parse the command line arguments.
 if len(sys.argv) != 2:
     helpText = "Usage: " + str(sys.argv[0]) + " <filename>"
     print helpText
