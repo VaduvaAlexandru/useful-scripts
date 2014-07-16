@@ -1,5 +1,6 @@
 #ignore output directory
 output/
+NFS_20_CGL4_Registration_x86_64*
 
 #C/C++ ignore files
 # Object files
