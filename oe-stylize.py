@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 """\
 Sanitize a bitbake file following the OpenEmbedded style guidelines,

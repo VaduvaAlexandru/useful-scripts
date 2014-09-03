@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 import sys
 from simpleodspy.sodsspreadsheet import SodsSpreadSheet
 from simpleodspy.sodsxml import SodsXml

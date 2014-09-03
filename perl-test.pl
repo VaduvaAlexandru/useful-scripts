@@ -39,10 +39,10 @@ for my $worksheet ( $workbook->worksheets() ) {
             my $cell = $worksheet->get_cell( $row, $col );
             next unless $cell;
 
-            #print "Row, Col    = ($row, $col)\n";
-            #print "Value       = ", $cell->value(),       "\n";
-            #print "Unformatted = ", $cell->unformatted(), "\n";
-            #print "\n";
+            print "Row, Col    = ($row, $col)\n";
+            print "Value       = ", $cell->value(),       "\n";
+            print "Unformatted = ", $cell->unformatted(), "\n";
+            print "\n";
         }
     }
 }
