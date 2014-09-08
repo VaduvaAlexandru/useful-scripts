@@ -102,8 +102,16 @@ def special_match(strg, search=re.compile(r'[^a-z0-9@.]').search):
 #    else:
 #        return os.path.isfile(arg)
 
+def git_autocomplete():
+    global filename
+    repo_dir = os.path.dirname(filename)
+#    print repo_dir
+    repo = git.Repo('./')
+    print repo.git.log(-1)
+
 if __name__ == "__main__":
     inspect_args()
-    print filename +":"+ str(checkM)+":"+str(checkC)
-    repo = git.Repo('./')
-    print repo.git.status()
+    git_autocomplete()
+#    print filename +":"+ str(checkM)+":"+str(checkC)
+#    repo = git.Repo('./')
+#    print repo.git.status()
