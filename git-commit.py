@@ -15,11 +15,12 @@ names_list = []
 #Define other global variables
 chechM = False
 checkC = False
-filename = "a"
+filename = ""
+lxcrNo = ""
 
 def inspect_args():
     try:
-        opts, args = getopt.getopt(sys.argv[1:], 'hlvmcf:', ['help', 'list', 'verbose', 'maintainer', 'committers', 'filename='])
+        opts, args = getopt.getopt(sys.argv[1:], 'hlvmcf:n:', ['help', 'list', 'verbose', 'maintainer', 'committers', 'filename=', 'lxcr='])
         if not opts:
             print "No options supplied. Default options enabled:"
             print "\tReviewer and merger selected from the given list file."
@@ -36,6 +37,7 @@ def inspect_args():
     global checkM
     global checkC
     global filename
+    global lxcrNo
     for opt, arg in opts:
         if opt in ('-h', '--help'):
             opts_check = True
@@ -52,6 +54,9 @@ def inspect_args():
                 filename = arg
             else:
                 print "Wrong format for the argument passed on option "+opt
+        if opt in ('-n', 'lxcr'):
+            opts_check = True
+            lxcrNo = arg
         if opt in ('-l', '--list'):
             opts_check = True
             parse_list()
@@ -63,11 +68,14 @@ def inspect_args():
             checkC = True
         if not opts_check:
             assert False, "unhandled option"
+    # No git log output is used the committer options are prioritized.
+    # The script believes the commiter about the veridicity of his/hers patch
     if not file_status:
         print "Please specify commit filename.\n"
         usage()
         sys.exit()
 
+#TODO: add -n option for LXCR number specification.
 def usage():
     print "\nGit commit script usage available"
     print "Usage: \n "+ sys.argv[0] +" [options]"
@@ -77,6 +85,7 @@ def usage():
     print "\t-c, --committers       send email to committers on the package"
     print "\t-l, --list             send email to a list of committers read from config file"
     print "\t-f, --filename         selected commit file"
+    print "\t-n, --lxcr             specify lxcr number for linking patch to Enea Linux internal CRs"
     print "\t-h, --help             display this help and exit"
     print "\t-v, --version          output version information and exit"
     print "\nReport "+ sys.argv[0] +" bugs to vaduva.jan.alexandry@gmail.com"
@@ -107,7 +116,7 @@ def git_autocomplete():
     repo_dir = os.path.dirname(filename)
 #    print repo_dir
     repo = git.Repo('./')
-    print repo.git.log(-1)
+    print repo.git.log(-1, "-p")
 
 if __name__ == "__main__":
     inspect_args()
