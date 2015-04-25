@@ -1,6 +1,6 @@
 #ignore output directory
 output/
-input/
+#input/
 
 #C/C++ ignore files
 # Object files
