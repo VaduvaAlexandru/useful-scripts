@@ -1,11 +1,13 @@
-import io, re
+import io, re, sys
 import textract
 import enchant
 
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
-text = textract.process('rezumat-hids-framework.doc', extension='doc')
+#text = textract.process('rezumat-hids-framework.doc', extension='doc')
+ext = sys.argv[1].split('.')[1]
+text = textract.process(sys.argv[1], extension=ext)
 d = enchant.Dict("en_US")
 
 char_encoding = "utf-8"
@@ -35,10 +37,16 @@ for line in lines:
 
 issues = ['study', 'investigate', 'system', 'pipeline', 'features', 'combine', \
           'modify', 'expand', 'etc', 'for various reasons', 'this', 'that', 'it', \
-          'these', 'which']
+          'these', 'which', 'now', 'new', 'will', 'below', 'above', 'very', 'our', \
+          'is thought', 'possess', 'sufficient', 'utilize', 'demonstrate', 'assistance', \
+          'terminate', 'prior to', 'due to the fact that', 'in a considerable number of cases', \
+          'the vast majority of', 'during the time that', 'in close proximity to']
 solutions = ['develop', 'propose', 'model', 'representations', \
-             '"That" is defining; "which" is nondefining']
+             '"That" is defining; "which" is nondefining', 'I think', 'have', \
+             'enough', 'use', 'show', 'help', 'end', 'before', 'because', 'often', 'most', \
+             'when', 'near']
 
+print "Check the inappropriate syntax:"
 for idx, row in enumerate(token_lists):
     for column in row:
         if column in issues:
@@ -52,6 +60,17 @@ print "\tUse instead:\n%s" % solutions
 
 ## TODO: identify acronyms and see if they were defined the first time
 ##       they were used, else signal this as an issue
+print "Check that the terminology and notation in the paper are defined before used!"
+print "Make sure italics are used for definitions or quotes, not for emphasis!"
+
+print "For more infor please consult:"
+print "\thttps://cs.stanford.edu/people/widom/paper-writing.html"
+print "\thttp://karpathy.github.io/2016/09/07/phd/"
+print "\thttps://lemire.me/blog/rules-to-write-a-good-research-paper/"
+print "\thttp://www.columbia.edu/cu/biology/ug/research/paper.html"
+
+print "Also use the following script: style-check.rb -v *.tex"
+print "\tMore info here: http://www.cs.umd.edu/~nspring/software/style-check-readme.html"
 
 ## TODO: identify if the paper has the proper structure, for this
 ##       NLP an ML might need to be used
