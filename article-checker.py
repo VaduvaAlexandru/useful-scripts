@@ -49,11 +49,16 @@ solutions = ['develop', 'propose', 'model', 'representations', \
 print "Check the inappropriate syntax:"
 for idx, row in enumerate(token_lists):
     for column in row:
-        if column in issues:
-            print "From line %5d remove: %s" % (idx, column)
         if d.check(column) is False and re.match('^[a-zA-Z ]*$', column):
             print "From line %5d please correct: %s" % (idx, column)
-print "\tUse instead:\n%s" % solutions
+print "-----"
+
+for idx, row in enumerate(token_lists):
+    for column in row:
+        if column in issues:
+            print "From line %5d revise: %s" % (idx, column)
+print "\tInstead of the above mentioned issues:\n%s" % issues
+print "\tPlease try and use the following alternatives:\n%s" % solutions
 
 ## TODO: print romanian chars correctly, at the moment they do not
 ##       seem correctly encoded/decoded from 'text' variable -> POSTPONED
