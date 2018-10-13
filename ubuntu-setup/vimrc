@@ -21,14 +21,14 @@ Bundle 'mkitt/browser-refresh.vim'
 Bundle 'cucumber.zip'
 Bundle 'Markdown'
 Bundle 'repeat.vim'
-Bundle 'SuperTab'
+" Bundle 'SuperTab'
 Bundle 'Align'
-Bundle 'git://git.wincent.com/command-t.git'
+" Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter.git'
-Bundle 'https://github.com/flazz/vim-colorschemes.git'
+" Bundle 'https://github.com/flazz/vim-colorschemes.git'
 " Bundle 'flazz/vim-colorschemes'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'ColorSchemeMenuMaker'
@@ -41,7 +41,7 @@ Bundle 'Chiel92/vim-autoformat'
 Bundle '907th/vim-auto-save'
 Bundle 'https://github.com/myusuf3/numbers.vim.git'
 Bundle 'https://github.com/kien/ctrlp.vim.git'
-Bundle 'https://github.com/Shougo/neocomplcache.vim.git'
+" Bundle 'https://github.com/Shougo/neocomplcache.vim.git'
 Bundle 'https://github.com/Shougo/neocomplete.vim.git'
 Bundle 'https://github.com/ciaranm/detectindent.git'
 Bundle 'https://github.com/troydm/easybuffer.vim.git'
@@ -88,7 +88,7 @@ Bundle 'chrisbra/SudoEdit.vim'
 Bundle 'itchyny/lightline.vim'
 "Bundle 'Townk/vim-autoclose'
 Bundle 'mhinz/vim-startify'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 
 "" Custom bundles
 Bundle 'tpope/vim-commentary'
@@ -126,6 +126,8 @@ Bundle 'vim-scripts/c.vim'
 
 Bundle 'vim-perl/vim-perl'
 Bundle 'c9s/perlomni.vim'
+
+Bundle 'vim-bitbake'
 
 " autoformat text
 "let g:formatprg_args_c = "--mode=cs --style=ansi -pcHs4"
@@ -173,10 +175,15 @@ set magic
 syntax on
 filetype indent on
 filetype plugin on
+au FileType php setl ofu=phpcomplete#CompletePHP
+au FileType ruby,eruby setl ofu=rubycomplete#Complete
+au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
+au FileType c setl ofu=ccomplete#CompleteCpp
+au FileType css setl ofu=csscomplete#CompleteCSS
 
-" colorscheme darkblue
+colorscheme darkblue
 " colorscheme ir_black
-colorscheme 256-grayvim
+" colorscheme 256-grayvim
 
 " if has("gui_running")
 "     set guioptions-=T
@@ -360,6 +367,7 @@ set showmatch                                   " tmpjump to match-bracket
 set clipboard+=unnamedplus                      " use the clipboards of vim and win
 "set clipboard+=unnamed                          " use the clipboards of vim and win
 set go+=a                                       " Visual selection automatically copied to the clipboard
+"set spell spelllang=en_us                       " Spellcheck enabled for US English language
 
 " Toggle text wrapping
 set ai "Auto indent
@@ -445,6 +453,13 @@ let g:syntastic_mode_map = {
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
+"highlight YcmWarningLine guibg=#ff00ff
+"highlight YcmWarningSign guibg=#ff00ff
+"highlight YcmWarningSection guibg=#ff00ff
+"highlight YcmErrorLine guibg=#ffff00
+"highlight YcmErrorSign guibg=#ffff00
+"highlight YcmErrorSection guibg=#ffff00
+
 "highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
 "match ExtraWhitespace /\s\+$/
 "autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
@@ -463,3 +478,12 @@ let c_no_tab_space_error = 1
 let python_highlight_all = 1
 let g:session_autosave = 'no'
 let g:session_autoload = 'no'
+"let g:ycm_confirm_extra_conf = 0
+
+"Set nobomb support to remove BOM errors
+au BufWritePre * setlocal nobomb
+set encoding=utf-8 nobomb    " BOM often causes trouble
+setlocal nobomb
+setglobal nobomb"
+
+set noinsertmode         "disable insert mode"
