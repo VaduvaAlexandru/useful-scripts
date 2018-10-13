@@ -73,10 +73,6 @@ source ~/.alias
 
 # Whenever displaying the prompt, write the previous line to disk
 export PROMPT_COMMAND="history -a"
-export PATH=/vobs/tefo/bin/:/view/scriptview/vobs/cc_support/scripts:/usr/atria/bin:$PATH:/rdtools/ivtool/accesserver/current/bin:/rdtools/eneatool/Unix.Generic/
-if [ "`uname -n`" = "sestofb10" ]; then
-  if ! echo "$PATH" | fgrep "/rdprod/userdoc/bin" >/dev/null; then export PATH=$PATH:/rdprod/userdoc/bin ; fi
-fi
 export SFKDIR='/vobs/ose5/system/test/bin/'
 #export LM_LICENSE_FILE='744@ymer.enea.se'
 #export LM_LICENSE_FILE='744@ymer:27000@sestovm0201'
@@ -243,6 +239,8 @@ if [ "`uname -n`" = "sestofb10" ]; then
         export PATH=$PATH:/rdprod/userdoc/bin ;
     fi
 fi
+
+test -f ~/.git-completion.bash && . $_
 
 export TERM=xterm-256color
 export NCURSES_NO_UTF8_ACS=1
