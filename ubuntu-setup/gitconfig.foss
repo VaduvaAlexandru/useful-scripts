@@ -1,0 +1,21 @@
+[core]
+	autocrlf = false
+	editor = vim
+[user]
+	name = Alexandru.Vaduva
+	email = alexandru.vaduva@linux.com
+[color]
+	ui = auto
+[receive]
+	denyDeleteCurrent = warn
+[format]
+    subjectprefix = meta-cgl][PATCH
+[sendemail]
+    to = yocto@yoctoproject.org
+	from = Alexandru.Vaduva <alexandru.vaduva@linux.com>
+	smtpserver = smtp.mail.yahoo.com
+	smtpuser = vaduvajanalexandru@yahoo.com
+	smtpencryption = ssl
+	smtppass = VJAlex_100
+	chainreplyto = false
+	smtpserverport = 465
