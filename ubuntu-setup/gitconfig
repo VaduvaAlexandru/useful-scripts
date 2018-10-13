@@ -2,8 +2,8 @@
 	autocrlf = false
 	editor = vim
 [user]
-	name = Alexandru Vaduva
-	email = Jan-Alexandru_Vaduva@mentor.com
+	name = Alexandru.Vaduva
+	email = alexandru.vaduva@linux.com
 [credential]
     helper = cache --timeout=360000
 [help]
@@ -25,12 +25,34 @@
     default = current
 [pull]
     default = current
-[credential "git@github.com:MentorEmbedded/"]
-    username = jvaduva
-[url "git@github.com:MentorEmbedded/"]
-    insteadOf = https://github.com/MentorEmbedded/
-    insteadOf = git://github.com/MentorEmbedded/
+[credential "git@github.com"]
+    username = VaduvaAlexandru
+    token = 888e3d4267e0662acc01ce8ad51ca861434f3dd7
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+    insteadOf = git://github.com/
+[url "https://github.com/"]
+    insteadOf = ssh://git@github.com/
 [color]
 	ui = auto
 [receive]
 	denyDeleteCurrent = warn
+[format]
+    subjectprefix = meta-cgl][PATCH
+[sendemail]
+    to = yocto@yoctoproject.org
+	from = Alexandru.Vaduva <alexandru.vaduva@linux.com>
+	smtpserver = smtp.mail.yahoo.com
+	smtpuser = vaduvajanalexandru@yahoo.com
+	smtpencryption = ssl
+	smtppass = VJAlex_100
+	chainreplyto = false
+	smtpserverport = 465
+#[sendemail]
+#    smtpserver = mail-eu.mentorg.com
+#    assume8bitEncoding = UTF-8
+#    suppresscc = self
+[http]
+        sslverify = false
+[gc]
+        auto = 0
